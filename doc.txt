@@ -1,0 +1,33 @@
+React & Web3 useful infos :
+
+--
+UseEffect()
+
+The Effect Hook allows to perform side effects in function components.
+Data fetching, setting up a subscription or manually changing the DOM in React components are examples of side effects. 
+This hook is great for configuring listeners, retrieving data from the API.
+
+https://reactjs.org/docs/hooks-effect.html
+
+--
+UseState()
+
+useState is a Hook that lets you add React state to function components.
+
+https://reactjs.org/docs/hooks-state.html
+
+--
+UseLocalStorage()
+
+Persists the state with local storage so that it remains after a page refresh :
+It is a web storage object that allows JavaScript sites and apps to keep key-value pairs,
+in a web browser with no expiration date.
+
+This can be useful for our dark theme.
+
+https://usehooks-ts.com/react-hook/use-local-storage
+
+--
+Web3 utils (big numbers, etc)
+
+https://web3js.readthedocs.io/en/v1.2.11/web3-utils.html

@@ -2,23 +2,29 @@
 
 npm install or yarn
 
-#### -- Start development server
+#### -- Start development server and run the frontend
 
-npm run start
+npm start
 
-#### -- Install web3 and start using web3.eth
+#### -- Install web3.js and start using web3.eth
 
-npm install web3
+[npm install web3] (https://web3js.readthedocs.io/en/v1.8.0/getting-started.html#adding-web3-js)
 
-#### -- Getting starting with useDApp
+#### -- Get starting with useDApp
 
-npm i @usedapp/core ethers
+[npm i @usedapp/core ethers] (https://usedapp-docs.netlify.app/docs/)
 
-#### -- Getting starting with API Axios
+#### -- Get starting with ethers.js
 
-npm install axios
+[npm install --save ethers] (https://docs.ethers.io/v5/single-page/)
+
+#### -- Translate web content with i18next
+
+[step by step guide] (https://react.i18next.com/legacy-v9/step-by-step-guide)
+
 
 #### -- UX/UI
-###### --Color codes
+###### Free fonts
 
-###### --Free fonts
+[Millimètre] (https://velvetyne.fr/)
+[Inter] (https://fonts.google.com/specimen/Inter)

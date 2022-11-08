@@ -1,0 +1,12 @@
+react==18.2.0
+react-dom==18.2.0
+react-router-dom==6.4.3
+
+web3==1.8.0
+ethers==5.7.2
+@usedapp/core==1.2.1
+
+react-i18next==9.0.10
+i18next==22.0.4
+i18next-browser-languagedetector==7.0.1
+i18next-http-backend==2.0.1

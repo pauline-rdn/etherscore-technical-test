@@ -2,6 +2,7 @@ import useLocalStorage from 'use-local-storage';
 
 import { DAppProvider, Goerli } from '@usedapp/core'
 import { getDefaultProvider } from 'ethers'
+
 import UserWallet from './components/UserWallet';
 
 import './App.css';
@@ -10,12 +11,21 @@ import "./styles/Global.css";
 import i18n from "i18next";
 import { withNamespaces } from 'react-i18next';
 
+
+/**
+ * Links the functionalities of our web3 application.
+ */
+
+
 function App({ t }) {
 
   // config Web3 features
 
-  // need the DAppProvider whith a config param for the connexion/deconnexion button
-  // https://usedapp-docs.netlify.app/docs/
+  /**
+   *  need DAppProvider (from @usedapp/core) + config params settings 
+   *  useful for the connect/deconnect button in UserWallet.js, using @usedapp/core.
+   *  https://usedapp-docs.netlify.app/docs/ 
+   */
 
   const config = {
     networks: [Goerli],
@@ -41,6 +51,7 @@ function App({ t }) {
    return (
     <DAppProvider config={config}>
       <div className='App' switch-theme={theme}>
+
         <div className="header">
             <button className='toggleButton' onClick={toggleTheme}>
               <svg id='toggleIcon' viewBox="0 0 24 24">
@@ -53,9 +64,11 @@ function App({ t }) {
               <button className='lngButton' onClick={() => i18n.changeLanguage('en')}>EN</button>
             </div>
         </div>
+
         <div className="main">
           <UserWallet />
         </div>
+
       </div>
     </DAppProvider>
   );

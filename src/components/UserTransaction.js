@@ -2,76 +2,116 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import '../App.css';
-
-import { withNamespaces } from 'react-i18next';
-
 import Web3  from 'web3';
 import { ethers } from "ethers";
 
-function UserTransaction({ t }) { {
+import '../App.css';
+import { BarLoader } from "react-spinners";
+
+import { withNamespaces } from 'react-i18next';
+
+
+/**
+ * Queries and displays the user's latest transactions on the blockchain.
+ */
+
+
+function UserTransaction({ t }) { 
+
+    // Get the account
 
     const [ userAccount, setUserAccount ] = useState(); 
     const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545' );
 
     useEffect(() => {
+
+        async function loadAccounts() {
+            const accounts = await web3.eth.requestAccounts();
+            setUserAccount(accounts[0]);
+        }
+
         loadAccounts();
+
       }, []);
 
-    async function loadAccounts() {
-    const accounts = await web3.eth.requestAccounts();
-    setUserAccount(accounts[0]);
-    }
+    // Get last transactions by loading account history (ethers.js)
 
     const [history, setHistory] = useState();
     
     useEffect(() => {
+
+        async function loadHistory() {
+            let provider = new ethers.providers.EtherscanProvider('goerli');
+            let history = await provider.getHistory(userAccount);
+    
+            setHistory(history);
+        } 
+
         loadHistory();
+
     }, [userAccount])
 
-    // Get last 10 transactions
+    // Warn for a slow time response with a loader
 
-    async function loadHistory() {
-        let provider = new ethers.providers.EtherscanProvider('goerli');
-        let history = await provider.getHistory(userAccount);
+    const [loading, setLoading] = useState(false)
 
-        setHistory(history);
-    } 
+    useEffect(() => {
 
-    return (
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 7000)
+
+    }, [])
+
+    return (  
         <div className="App" id='black'>
             <div className="transaction-container">
-                <div className="main">
                     <div className='title-container'>
                         <p><strong><span class='transact-icon'>↓ </span>{t('LAST TRANSACTIONS')} <span class='transact-icon'>↓</span></strong><br /></p>
-                    </div>
+                    </div> 
                     <br /><br /> 
-                    <div className="history-section">
-                        {history?.map((transaction) => {
-                            const list = (
-                            <>
-                                <div className='info-container-transaction'>
-                                    <p>{transaction['hash']}</p>
-                                    <h4>from:</h4> 
-                                    <p>{transaction['from']}</p>
-                                    <h4>to:</h4>
-                                    <p>{transaction['to']}</p>
-                                </div>
-                                <br />
-                            </>
-                            );
-                            return list;
-                        })}
-                    </div>
-                </div>
+
+                    {
+                        loading ?
+                        <div className="loader">
+                            <BarLoader color="#36d7b7" />
+                            <p>{t('This may take a few seconds')}</p>
+                        </div>
+                        :
+                        <div>
+                        <div className="history-section">
+
+                            {/* display the 3 last transactions (should find a faster solution to query transactions) */}
+                            {/* history?.slice(0, 10).map() to get last 10 transactions */}
+                            
+                            {history?.slice(0, 3).map((transaction) => {
+                                const list = (
+                                <>
+                                    <div className='info-container-transaction'>
+                                        <p>{transaction['hash']}</p>
+                                        <h4>from:</h4> 
+                                        <p>{transaction['from']}</p>
+                                        <h4>to:</h4>
+                                        <p>{transaction['to']}</p>
+                                    </div>
+                                    <br />
+                                </>
+                                );
+                                return list;
+                            })}
+                        </div>
+                        </div>
+                    }
+
                 <Link to="/">
                     <button class='diagonal' id='home-link'>{t('return home')}</button>
                 </Link>
             </div>
         </div>
     );
-  }
 }
+
 
 
 export default withNamespaces()(UserTransaction);

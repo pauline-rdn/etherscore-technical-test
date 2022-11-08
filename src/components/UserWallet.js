@@ -10,45 +10,76 @@ import '../App.css';
 import { withNamespaces } from 'react-i18next';
 
 
+/**
+ * Relates to actions in relation with a crypto wallet :
+ * Connect app to the blockchain and MetaMask user's account.
+ * Get and display the data from a particular account.
+ */
+
+
 const UserWallet = ({ t }) => {
 
-    // fetch and display account & balance using web3.js
+    // get and display wallet address/current balance using web3.js
+
+    /** 
+     *  useState() allows to init variables, in order to fetch and display MetaMask data.
+     *  @param {data}, accepts one parameter : the initial state (any sort of data).
+     *  @returns {data, setData}, two values: the current state, and a function that can be used to update the state.
+     */
 
     const [ userAccount, setUserAccount ] = useState(); 
     const [ network, setNetwork ] = useState();
     const [ balance, setBalance ] = useState();
 
-    // https://web3js.readthedocs.io/en/v1.8.0/getting-started.html#adding-web3-js
-    // If this property is null you should connect to a remote/local node.
-    //using ganache (if givenProvider dosen't work then look at ganache port)
+    /**
+     *  If this property is null you should connect to a remote/local node.
+     *  using ganache (if givenProvider dosen't work then look at ganache port).
+     *  https://web3js.readthedocs.io/en/v1.8.0/getting-started.html
+     */
     
     const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545' );
 
-    useEffect(() => {
-        loadAccounts();
-      }, []);
+    // get MetaMask account
+
+    /** 
+     *  useEffect() is used to perform an effect each time the state changes.
+     *  loadAccounts() waits for the return of web3.eth.getAccounts();
+     *  returns an array of MetaMask addresses.
+     *  @returns {Array<string>}, the MetaMask addresses.
+     *  https://web3js.readthedocs.io/en/v1.2.6/web3-eth.html
+     *  Then we can set userAccount's value : setUserAccount()
+     *  to the wallet address we want to connect to our app.
+     */
     
     useEffect(() => {
+
+        async function loadAccounts() {
+            const accounts = await web3.eth.requestAccounts();
+            setUserAccount(accounts[0]);
+        }
+        
+        loadAccounts();
+
+      }, []);
+    
+    // get balance
+
+    useEffect(() => {
+
+        async function loadBalance() {
+            const network = await web3.eth.net.getNetworkType();
+            const balance = await web3.eth.getBalance(userAccount, "latest");
+        
+            setNetwork(network);
+            setBalance((balance/1e18).toFixed(4)); // fix big/real numbers issue
+        }
+
         loadBalance();
+
     }, [userAccount]);
 
 
-    // async / await the promise
-
-    async function loadBalance() {
-    const network = await web3.eth.net.getNetworkType();
-    const balance = await web3.eth.getBalance(userAccount, "latest");
-
-    setNetwork(network);
-    setBalance((balance/1e18).toFixed(4));
-    }
-
-    async function loadAccounts() {
-    const accounts = await web3.eth.requestAccounts();
-    setUserAccount(accounts[0]);
-    }
-
-    // connect/disconnect functionalities using @usedapp/core
+    // connect/disconnect using @usedapp/core
 
     const { activateBrowserWallet, account, deactivate } = useEthers();
 

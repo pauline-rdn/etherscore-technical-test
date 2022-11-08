@@ -1,4 +1,4 @@
-/* fonts */
+/* include fonts */
 
 @font-face {
   font-family: "Millimetre";
@@ -178,65 +178,6 @@ p {
   font-size: 21px;
 }
 
-/* Last transactions page : UserTransactions.js */
-
-#black {
-  background-color: black !important;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.transaction-container {
-  margin: 5vh 5vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.title-container {
-  background-color: var(--lightest-navy);
-  border: 3px solid #7c98bbf8;
-  border-radius: 10px;
-  padding-left: 3vw;
-  padding-right: 3vw;
-}
-
-.title-container p{
-  color: white;
-  font-family: "Millimetre";
-  font-size: 21px;
-}
-
-.title-container p span{
-  font-family: "Inter-Medium";
-  font-size: 21px;
-}
-
-.history-section {
-  width: 80vw;
-  word-wrap: break-word;  
-}
-
-.info-container-transaction{
-  background-color: var(--lightest-navy);
-  padding: 2vh 2vw;
-  border: 3px solid #7c98bbf8;
-  border-radius: 10px;
-  color: white;
-}
-
-.info-container-transaction p {
-  color: white;
-}
-
-.info-container-transaction h4 {
-  font-family: "Millimetre";
-  text-decoration: underline;
-  text-underline-offset: 1vh;
-}
-
 /* connect/disconnect button : slide animation */
 
 button {
@@ -291,7 +232,87 @@ button:hover{
   transform: translateY(10%) translateX(-25px) rotate(-45deg);
 }
 
-/* Animation */
+/* Last transactions page : UserTransactions.js */
+
+#black {
+  background-color: black !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.transaction-container {
+  margin-top: 5vh;
+  margin-right: 5vw;
+  margin-left: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 9999;
+  text-align: center;
+  max-width: 100%;
+}
+
+.title-container {
+  background-color: var(--lightest-navy);
+  border: 3px solid #7c98bbf8;
+  border-radius: 10px;
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
+.title-container p{
+  color: white;
+  font-family: "Millimetre";
+  font-size: 21px;
+}
+
+.title-container p span{
+  font-family: "Inter-Medium";
+  font-size: 21px;
+}
+
+.history-section {
+  width: 60vw;
+  word-wrap: break-word;  
+}
+
+.info-container-transaction{
+  background-color: var(--lightest-navy);
+  padding: 2vh 2vw;
+  border: 3px solid #7c98bbf8;
+  border-radius: 10px;
+  color: white;
+}
+
+.info-container-transaction p {
+  color: white;
+}
+
+.info-container-transaction h4 {
+  font-family: "Millimetre";
+  text-decoration: underline;
+  text-underline-offset: 1vh;
+}
+
+/* loader : UserTransactions.js */
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader p {
+  color: white;
+  font-family: 'Inter-Medium';
+}
+
+
+/* Button animation */
 
 button{animation: 1s ease-in-out Bounce;}
 @keyframes Bounce{
@@ -336,13 +357,10 @@ button{animation: 1s ease-in-out Bounce;}
     font-size: 16px;
   }
 
-  .title-container {
-    margin-top: 15vh;
+  .history-section {
+    width: 80vw;
   }
 
-  #home-link{
-    margin-top: 15vh;
-  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -358,6 +376,14 @@ button{animation: 1s ease-in-out Bounce;}
     margin-top: -3vh; 
   }
 
+  .transaction-container {
+    margin-top: 5vh;
+  }
+
+  .title-container .transact-icon{
+    display: none;
+  }
+
   .info-container {
     width: 70vw;
     max-width: 70vw !important;
@@ -365,24 +391,15 @@ button{animation: 1s ease-in-out Bounce;}
   }
 
   .info-container p{
-    /*overflow: hidden;
-    white-space: nowrap;*/
     word-wrap: break-word;     
   }
 
-}
-
-@media only screen and (max-width: 400px) {
-
-  .title-container {
-    margin-top: 15vh;
-  }
-
   #home-link{
-    margin-top: 20vh;
+    margin-top: - 10vh;
   }
 
 }
+
 
 
 

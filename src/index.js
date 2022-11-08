@@ -7,6 +7,10 @@ import App from './App';
 import "./services/i18n";
 import UserTransaction from './components/UserTransaction';
 
+/**
+ * Parent of our app
+ */
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

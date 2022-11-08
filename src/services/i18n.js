@@ -1,8 +1,13 @@
 import i18n from "i18next";
-import detector from "i18next-browser-languagedetector";
-import { reactI18nextModule } from "react-i18next";
+import { reactI18nextModule } from 'react-i18next';
+import Backend from 'i18next-chained-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import ReduxDetector from 'i18next-redux-languagedetector';
 
-i18n.use(detector).use(reactI18nextModule).init({
+const Detector = new LanguageDetector();
+Detector.addDetector(ReduxDetector);
+
+i18n.use(Backend).use(Detector).use(reactI18nextModule).init({
     resources: {
         en: {
             translation: {
@@ -17,7 +22,8 @@ i18n.use(detector).use(reactI18nextModule).init({
                 'Disconnect': 'Disconnect',
                 'Check transactions': 'Check transactions',
                 'LAST TRANSACTIONS' : 'LAST TRANSACTIONS',
-                'return home': 'return home'
+                'return home': 'return home',
+                'This may take a few seconds' : 'This may take a few seconds'
             },
         },
         fr: {
@@ -33,7 +39,8 @@ i18n.use(detector).use(reactI18nextModule).init({
                 'Disconnect': 'Me déconnecter',
                 'Check transactions': 'Mes transactions',
                 'LAST TRANSACTIONS' : 'VOS DERNIÈRES TRANSACTIONS',
-                'return home': 'retour'
+                'return home': 'retour',
+                'This may take a few seconds' : 'Cela peut prendre quelques secondes'
             },
         },
     },
