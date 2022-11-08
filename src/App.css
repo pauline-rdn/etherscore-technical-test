@@ -1,38 +1,390 @@
+/* fonts */
+
+@font-face {
+  font-family: "Millimetre";
+  src: url("/public/fonts/Millimetre-Regular_web.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter-Regular";
+  src: url("/public/fonts/Inter-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter-Medium";
+  src: url("/public/fonts/Inter-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter-SemiBold";
+  src: url("/public/fonts/Inter-SemiBold.woff2") format("woff2");
+}
+
+
+/* main app core */
+
 .App {
+  transition: all .5s;
+  max-width: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  background: linear-gradient(217deg, var(--white), var(--lilac), var(--lightest-lilac), var(--dark-lilac), var(--purple) 75.71%),
+              linear-gradient(127deg, var(--white), var(--lilac), var(--lightest-lilac), var(--dark-lilac), var(--purple) 70.71%),
+              linear-gradient(336deg, var(--white), var(--lilac), var(--lightest-lilac), var(--dark-lilac), var(--purple) 70.71%);
+  background-size: cover;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+/* dark theme switcher */
+
+[switch-theme='dark']{
+  background: black;
+  --light-navy: antiquewhite;
+  --navy: antiquewhite;
+  --border: #7c98bbf8;
+  --connect: antiquewhite;
+}
+
+/* header section : App.js */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
+
+/* theme switcher button */
+
+.toggleButton{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-family: "Inter-Medium";
+  height: 6vh;
+  animation: none !important;
+  background-color: #7c98bbf8;
+  border: 2px solid var(--mid-navy);
+  color: var(--button);
+}
+
+.toggleButton:hover{
+  color: var(--button);
+}
+
+.toggleButton #toggleIcon {
+  width:27px;
+  height:27px;
+}
+
+/* lang switcher buttons */
+
+.lng{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2vw;
+}
+
+.lngButton{
+  font-size: 16px;
+  font-family: "Inter-Medium";
+  height: 6vh;
+  animation: none !important;
+  background-color: #7c98bbf8;
+  border: 2px solid var(--mid-navy);
+  color: var(--button);
+  width: 70px;
+}
+
+/* main section : App.js */
+
+.main {
+  height: 100vh;
+  max-width: 100%;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* main section : UserWallet.js */
+
+h3 {
+  font-size: 42px;
+  color: var(--light-navy);
+  font-family: "Millimetre";
+}
+
+h3 span {
+  font-size: 13px;
+  font-family: "Inter-SemiBold";
+}
+
+.info-container {
+  background-color: var(--lightest-navy);
+  padding: 2vh 2vw;
+  border: 3px solid var(--border);
+  border-radius: 10px;
+}
+
+.info-container p strong{
+  font-size: 21px;
+  color: white;
+  font-family: "Millimetre";
+  letter-spacing: 1px;
+}
+
+.info-container p {
+  font-size: 18px;
+  color: white;
+  font-family: "Inter-Regular";
+}
+
+p {
+  font-size: 18px;
+  color: var(--navy);
+  font-family: "Inter-Regular";
+}
+
+#transaction-link {
+  border-radius: 7px;
+  padding: 5px;
+  width: 250px;
+  height: 60px;
+  background-color: var(--lightest-navy);
+  border: 2px solid var(--border);
+  color: white;
+  margin-top: 3vh;
+  font-size: 18px;
+  font-family: "Inter-Regular";
+	text-align: center;
+	cursor: pointer;
+  margin-top: 0 !important;
+  margin-bottom: 2vh;
+  animation: none;
+}
+
+#transaction-link .transact-icon{
+  font-size: 21px;
+}
+
+/* Last transactions page : UserTransactions.js */
+
+#black {
+  background-color: black !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.transaction-container {
+  margin: 5vh 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.title-container {
+  background-color: var(--lightest-navy);
+  border: 3px solid #7c98bbf8;
+  border-radius: 10px;
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
+.title-container p{
+  color: white;
+  font-family: "Millimetre";
+  font-size: 21px;
+}
+
+.title-container p span{
+  font-family: "Inter-Medium";
+  font-size: 21px;
+}
+
+.history-section {
+  width: 80vw;
+  word-wrap: break-word;  
+}
+
+.info-container-transaction{
+  background-color: var(--lightest-navy);
+  padding: 2vh 2vw;
+  border: 3px solid #7c98bbf8;
+  border-radius: 10px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.info-container-transaction p {
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.info-container-transaction h4 {
+  font-family: "Millimetre";
+  text-decoration: underline;
+  text-underline-offset: 1vh;
+}
+
+/* connect/disconnect button : slide animation */
+
+button {
+  position: relative;
+  border-radius: 7px;
+  padding: 5px;
+  width: 160px;
+  height: 50px;
+  border: 1px solid var(--mid-navy);
+  background: var(--mid-navy);
+  color: var(--connect);
+  margin-top: 3vh;
+  font-size: 18px;
+  font-family: "Inter-SemiBold";
+	text-align: center;
+	cursor: pointer;
+  transition: all .2s ease-in-out; 
+}
+
+button:hover{
+  color: #112240;
+  transform: scale(1.05);
+}
+
+.diagonal {
+  position: relative;
+  line-height: 50px;
+  background: var(--mid-navy);
+  color: white;
+  border: none;
+  font-weight: bold;
+  overflow: hidden;
+  z-index: 1;
+  padding: 0px;
+  margin-bottom: 5vh;
+}
+.diagonal:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500%;
+  height: 1000%;
+  background: #7c98bbf8;
+  z-index: -1;
+  transform-origin: 0% 0%;
+  transform: translateX(calc(20% - 25px)) translateY(10%) rotate(-45deg);
+  transform: translateY(10%) translateX(16%) rotate(-45deg);
+  transition: transform .3s;
+}
+.diagonal:hover::after {
+  transform: translateY(10%) translateX(-25px) rotate(-45deg);
+}
+
+/* Animation */
+
+button{animation: 1s ease-in-out Bounce;}
+@keyframes Bounce{
+    20%, 50%, 80%{
+        transform: translateY(0);
+    }
+    40%{
+        transform: translateY(-15px);
+    }
+    70%{
+        transform: translateY(-10px);
+    }
+    90%{
+        transform: translateY(-5px);
+    }
+}  
+
+/* responsive */
+
+@media only screen and (max-width: 600px) {
+  .header {
+   margin-left: 7vw;
+   margin-right: 7vw;
+   max-width: 90vw;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .main {
+    margin-left: 7vw;
+    margin-right: 7vw;
+    max-width: 90vw;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  .info-container p strong, .info-container-transaction {
+    font-size: 18px;
+  }
+
+  .info-container p, .info-container-transaction p {
+    font-size: 16px;
+  }
+
+  .title-container {
+    margin-top: 15vh;
+  }
+
+  #home-link{
+    margin-top: 15vh;
   }
 }
+
+@media only screen and (max-width: 450px) {
+  .header {
+   flex-direction: column;
+   align-items: center;
+  }
+  
+  .main {
+    width: 70vw;
+    max-width: 70vw !important;
+    margin: 0 auto;
+    margin-top: -3vh; 
+  }
+
+  .info-container {
+    width: 70vw;
+    max-width: 70vw !important;
+    margin: 0 auto;
+  }
+
+  .info-container p{
+    /*overflow: hidden;
+    white-space: nowrap;*/
+    word-wrap: break-word;     
+  }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+  .title-container {
+    margin-top: 15vh;
+  }
+
+  #home-link{
+    margin-top: 20vh;
+  }
+
+}
+
+
+
+
+

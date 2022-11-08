@@ -19,6 +19,6 @@ npm i @usedapp/core ethers
 npm install axios
 
 #### -- UX/UI
-## Color codes
+###### --Color codes
 
-## Free Font
+###### --Free fonts
