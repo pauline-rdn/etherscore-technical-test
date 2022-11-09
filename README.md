@@ -45,7 +45,7 @@ npm run build<br /><br />
 on netlify : drag & drog the build folder in the right section
 
 
-temporary online : (https://inspiring-pastelito-26fdd8.netlify.app/)
+temporary online : https://inspiring-pastelito-26fdd8.netlify.app/
 
 #### -- UX/UI
 ##### Free fonts
