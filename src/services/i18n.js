@@ -23,7 +23,8 @@ i18n.use(Backend).use(Detector).use(reactI18nextModule).init({
                 'Check transactions': 'Check transactions',
                 'LAST TRANSACTIONS' : 'LAST TRANSACTIONS',
                 'return home': 'return home',
-                'This may take a few seconds' : 'This may take a few seconds'
+                'This may take a few seconds' : 'This may take a few seconds',
+                'No transaction recorded on the blockchain' : 'No transaction recorded on the blockchain'
             },
         },
         fr: {
@@ -40,7 +41,8 @@ i18n.use(Backend).use(Detector).use(reactI18nextModule).init({
                 'Check transactions': 'Mes transactions',
                 'LAST TRANSACTIONS' : 'VOS DERNIÈRES TRANSACTIONS',
                 'return home': 'retour',
-                'This may take a few seconds' : 'Cela peut prendre quelques secondes'
+                'This may take a few seconds' : 'Cela peut prendre quelques secondes',
+                'No transaction recorded on the blockchain' : '0 transaction enregistrée sur la blockchain'
             },
         },
     },

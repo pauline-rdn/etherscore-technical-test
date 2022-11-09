@@ -290,6 +290,11 @@ button:hover{
 
 .info-container-transaction p {
   color: white;
+  font-family: "Inter-Medium";
+}
+
+#case0transaction{
+  color: white;
 }
 
 .info-container-transaction h4 {

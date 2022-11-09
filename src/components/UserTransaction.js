@@ -21,6 +21,9 @@ function UserTransaction({ t }) {
     // Get the account
 
     const [ userAccount, setUserAccount ] = useState(); 
+
+    // eslint-disable-next-line
+    var Web3 = require('web3'); 
     const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545' );
 
     useEffect(() => {
@@ -81,27 +84,34 @@ function UserTransaction({ t }) {
                         </div>
                         :
                         <div>
-                        <div className="history-section">
+                            <div className="history-section">
 
-                            {/* display the 3 last transactions (should find a faster solution to query transactions) */}
-                            {/* history?.slice(0, 10).map() to get last 10 transactions */}
-                            
-                            {history?.slice(0, 3).map((transaction) => {
-                                const list = (
-                                <>
-                                    <div className='info-container-transaction'>
-                                        <p>{transaction['hash']}</p>
-                                        <h4>from:</h4> 
-                                        <p>{transaction['from']}</p>
-                                        <h4>to:</h4>
-                                        <p>{transaction['to']}</p>
-                                    </div>
-                                    <br />
-                                </>
-                                );
-                                return list;
-                            })}
-                        </div>
+                                {/* display the 3 last transactions (should find a faster solution to query transactions) */}
+                                {/* history?.slice(0, 10).map() to get last 10 transactions */}
+                                
+                                {history?.slice(0, 3).map((transaction) => {
+                                    const list = (
+                                    <>
+                                        <div className='info-container-transaction'>
+                                            <p>{transaction['hash']}</p>
+                                            <h4>from:</h4> 
+                                            <p>{transaction['from']}</p>
+                                            <h4>to:</h4>
+                                            <p>{transaction['to']}</p>
+                                        </div>
+                                        <br />
+                                    </>
+                                    );
+                                    return list;
+                                })}
+
+                            </div>
+                            {
+                                document.getElementsByClassName('history-section').length > 1 ?
+                                <p></p>
+                                :
+                                <p id='case0transaction'>{t('No transaction recorded on the blockchain')}</p>
+                            }
                         </div>
                     }
 

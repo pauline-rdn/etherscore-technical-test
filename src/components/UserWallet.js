@@ -36,8 +36,10 @@ const UserWallet = ({ t }) => {
      *  using ganache (if givenProvider dosen't work then look at ganache port).
      *  https://web3js.readthedocs.io/en/v1.8.0/getting-started.html
      */
-    
-    const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545' );
+     
+    // eslint-disable-next-line
+    var Web3 = require('web3'); 
+    var web3 = new Web3(Web3.givenProvider || 'http://localhost:7545' );
 
     // get MetaMask account
 
