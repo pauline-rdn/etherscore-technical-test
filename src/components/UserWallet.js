@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import Web3  from 'web3';
 import { useEthers } from "@usedapp/core";
 
 import '../App.css';
@@ -37,7 +36,7 @@ const UserWallet = ({ t }) => {
      *  https://web3js.readthedocs.io/en/v1.8.0/getting-started.html
      */
      
-    // eslint-disable-next-line
+    
     var Web3 = require('web3'); 
     var web3 = new Web3(Web3.givenProvider || 'http://localhost:7545' );
 

@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import Web3  from 'web3';
 import { ethers } from "ethers";
 
 import '../App.css';
@@ -22,7 +21,6 @@ function UserTransaction({ t }) {
 
     const [ userAccount, setUserAccount ] = useState(); 
 
-    // eslint-disable-next-line
     var Web3 = require('web3'); 
     const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545' );
 
@@ -41,18 +39,27 @@ function UserTransaction({ t }) {
     // Get last transactions by loading account history (ethers.js)
 
     const [history, setHistory] = useState();
+    const [noTransaction, setNoTransaction] = useState();
     
     useEffect(() => {
 
         async function loadHistory() {
             let provider = new ethers.providers.EtherscanProvider('goerli');
             let history = await provider.getHistory(userAccount);
-    
+            
+            // if no transaction is recorded for the user
+
+            if(history.length === 0){
+                let noTransaction = t('No transaction recorded on the blockchain');
+                setNoTransaction(noTransaction);
+            }
+
             setHistory(history);
         } 
 
         loadHistory();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userAccount])
 
     // Warn for a slow time response with a loader
@@ -67,6 +74,7 @@ function UserTransaction({ t }) {
         }, 7000)
 
     }, [])
+
 
     return (  
         <div className="App" id='black'>
@@ -104,14 +112,8 @@ function UserTransaction({ t }) {
                                     );
                                     return list;
                                 })}
-
+                                <p id='case0transaction'> { noTransaction } </p>
                             </div>
-                            {
-                                document.getElementsByClassName('history-section').length > 1 ?
-                                <p></p>
-                                :
-                                <p id='case0transaction'>{t('No transaction recorded on the blockchain')}</p>
-                            }
                         </div>
                     }
 
