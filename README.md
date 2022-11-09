@@ -22,6 +22,22 @@ npm start
 
 [step by step guide] (https://react.i18next.com/legacy-v9/step-by-step-guide)
 
+#### -- Ensure https connexion
+###### install mkcert
+brew install mkcert
+
+###### create a certificat authority
+mkcert -install
+
+###### generate the certificat for localhost
+mkcert -cert-file ~/cert.pem -key-file ~/key.pem localhost
+
+
+###### configure create-react-app to use the certificat
+in .env file at the root project :
+HTTPS=true
+SSL_CRT_FILE=/path
+SSL_KEY_FILE=/path
 
 #### -- UX/UI
 ###### Free fonts

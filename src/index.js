@@ -8,7 +8,7 @@ import "./services/i18n";
 import UserTransaction from './components/UserTransaction';
 
 /**
- * Parent of our app
+ * Parent of the app
  */
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

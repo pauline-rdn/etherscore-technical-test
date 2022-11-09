@@ -32,6 +32,7 @@ function UserTransaction({ t }) {
 
         loadAccounts();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
     // Get last transactions by loading account history (ethers.js)
@@ -68,7 +69,7 @@ function UserTransaction({ t }) {
         <div className="App" id='black'>
             <div className="transaction-container">
                     <div className='title-container'>
-                        <p><strong><span class='transact-icon'>↓ </span>{t('LAST TRANSACTIONS')} <span class='transact-icon'>↓</span></strong><br /></p>
+                        <p><strong><span className='transact-icon'>↓ </span>{t('LAST TRANSACTIONS')} <span className='transact-icon'>↓</span></strong><br /></p>
                     </div> 
                     <br /><br /> 
 
@@ -105,7 +106,7 @@ function UserTransaction({ t }) {
                     }
 
                 <Link to="/">
-                    <button class='diagonal' id='home-link'>{t('return home')}</button>
+                    <button className='diagonal' id='home-link'>{t('return home')}</button>
                 </Link>
             </div>
         </div>

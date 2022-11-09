@@ -44,11 +44,13 @@ const UserWallet = ({ t }) => {
     /** 
      *  useEffect() is used to perform an effect each time the state changes.
      *  loadAccounts() waits for the return of web3.eth.getAccounts();
-     *  returns an array of MetaMask addresses.
-     *  @returns {Array<string>}, the MetaMask addresses.
+     *  Which returns an array of MetaMask addresses.
      *  https://web3js.readthedocs.io/en/v1.2.6/web3-eth.html
+     * 
      *  Then we can set userAccount's value : setUserAccount()
-     *  to the wallet address we want to connect to our app.
+     *  to the wallet address we want to connect to our app : accounts[0]
+     *  with useState(), userAccount takes accounts[0] as value.
+     *  We can display this value in our html. 
      */
     
     useEffect(() => {
@@ -60,6 +62,7 @@ const UserWallet = ({ t }) => {
         
         loadAccounts();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
     
     // get balance
@@ -76,6 +79,7 @@ const UserWallet = ({ t }) => {
 
         loadBalance();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userAccount]);
 
 
@@ -100,7 +104,7 @@ const UserWallet = ({ t }) => {
                     </div>
                     <br /><br />
                     <Link to="/transactions">
-                        <button id='transaction-link'>{t('Check transactions')}  <span class='transact-icon'>↱</span></button>
+                        <button id='transaction-link'>{t('Check transactions')}  <span className='transact-icon'>↱</span></button>
                     </Link>
                     <br />
                     <button className='diagonal' onClick={() => deactivate()}>
